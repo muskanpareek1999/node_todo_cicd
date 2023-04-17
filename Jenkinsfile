@@ -7,12 +7,12 @@ pipeline {
                 git url: 'https://github.com/muskanpareek1999/node_todo_cicd.git', branch: 'main'
             }
         }
-        stage('build & test') {
+        stage('Build & Test') {
             steps {
                 sh 'docker build . -t muskanpareek/node-todo-app:latest'
             }
         }
-        stage('login & push image') {
+        stage('Login & Push Image to DockerHub') {
             steps {
                echo 'login in to docker hub and pushing image....'
                withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
